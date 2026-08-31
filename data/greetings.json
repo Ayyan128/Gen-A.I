@@ -1,0 +1,31 @@
+{
+  "morning": [
+    "Good morning",
+    "Rise and shine",
+    "Top of the morning to you",
+    "Good morning, ready when you are",
+    "Morning has broken, and so have I from standby",
+    "A fine morning to get started"
+  ],
+  "afternoon": [
+    "Good afternoon",
+    "Afternoon",
+    "Hope your day is going well so far",
+    "Good afternoon, systems running smoothly",
+    "The afternoon awaits your instructions"
+  ],
+  "evening": [
+    "Good evening",
+    "Evening",
+    "Good evening, winding down the day",
+    "The evening is yours to command",
+    "Good evening, hope today treated you well"
+  ],
+  "night": [
+    "Good night",
+    "Burning the midnight oil, I see",
+    "The stars are out, perhaps you should rest soon",
+    "Good night, systems on standby whenever you need",
+    "Late night session, noted"
+  ]
+}

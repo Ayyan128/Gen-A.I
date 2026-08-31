@@ -1,0 +1,92 @@
+[
+  {
+    "id": "tool_001",
+    "name": "groq_gen_ask",
+    "description": "Ask a general question or request information. Returns a summarized, information-dense answer.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The question or text to ask/summarize."
+        }
+      },
+      "required": ["text"]
+    }
+  },
+  {
+    "id": "tool_002",
+    "name": "gen_website",
+    "description": "Search the web for one or more site names/queries (comma-separated for multiple) and open the first result for each in the default browser.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "website_name": {
+          "type": "string",
+          "description": "Website name(s) or search query to open. Multiple sites can be passed as a comma-separated string, e.g. 'youtube.com, github.com'."
+        }
+      },
+      "required": ["website_name"]
+    }
+  },
+  {
+    "id": "tool_003",
+    "name": "ram_usage",
+    "description": "Get the current system RAM usage percentage.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "id": "tool_004",
+    "name": "cpu_usage",
+    "description": "Get the current system CPU usage percentage.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "id": "tool_005",
+    "name": "gen_sys_analysis",
+    "description": "Analyze current CPU and RAM usage against historical averages and warn if usage is abnormally high.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "id": "tool_006",
+    "name": "gen_shutdown",
+    "description": "Shut down the computer after a short delay.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "id": "tool_007",
+    "name": "gen_restart",
+    "description": "Restart the computer after a short delay.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "id": "tool_008",
+    "name": "gen_exit",
+    "description": "quit the program after a short delay.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  }
+]
