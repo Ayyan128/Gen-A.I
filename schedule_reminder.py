@@ -3,11 +3,12 @@ import pyttsx3
 import datetime as dt 
 import os
 
-def speak(text):
-    print('starting speak function')
+def speak(text):	
     engine = pyttsx3.init()
-    engine.setProperty('rate', 185)
-    engine.setProperty('volume', 0.6)
+    voices = engine.getProperty("voices")
+    engine.setProperty("voice", voices[5].id)
+    engine.setProperty("rate", 170)
+    engine.setProperty("volume", 0.6)
     engine.say(text)
     engine.runAndWait()
     del engine

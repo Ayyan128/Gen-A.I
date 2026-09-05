@@ -7,9 +7,10 @@ from gen_function_excute import excute_tool
 from gen_speak import gen_voice_package as vpkg
 from schedule_reminder import reminder_excute
 import getpass
-
+print('packages loaded')
 # ---- Configuration ----
 print('Intializing Gen A.I....')
+vpkg.gen_jarvis_eng('Intializing Gen A.I....')
 MODEL = "openai/gpt-oss-120b"    
 MAX_TOKENS = 1024                    # max tokens per response
 EFFORTS = 'low'
@@ -28,6 +29,8 @@ SYSTEM_PROMPT = (
 # --------------------------------
 # Assitent Function
 # ----------------------------------
+print('Welcome Back Sir')
+vpkg.gen_jarvis_eng('Welcome Back Sir')
 
 def gen_routine_excution():
     vpkg.gen_jarvis_eng('starting the routine apps confirmation needed')
@@ -39,12 +42,12 @@ def gen_routine_excution():
         'start'
     }
     if conf in affirmative_responses:
-        excute_tool()
+        reminder_excute()
     else:
         exit()
 
 def main():
-    with open("data/API_KEY") as f:
+    with open("data/API_KEY.txt", 'r') as f:
         api_key = f.read().strip()
         print('api_key done')
     if not api_key:

@@ -16,7 +16,7 @@ def gen_greet_fallback(time):
 
 
 def gen_greet_api(period):
-    with open("data/API_KEY") as f:
+    with open("data/API_KEY.txt") as f:
         gen_api = f.read().strip()
     try:
         client = Groq(api_key=gen_api)
