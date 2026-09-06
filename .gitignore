@@ -2,3 +2,4 @@ data/API_KEY.txt
 .vscode/
 .venv
 data/tasks.json
+__pycache__
