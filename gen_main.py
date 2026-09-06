@@ -5,11 +5,15 @@ import os
 from groq import Groq
 from gen_function_excute import excute_tool
 from gen_speak import gen_voice_package as vpkg
+from schedule_reminder import reminder_excute
 import getpass
-
+import ctypes
+import signal
+print('packages loaded')
 # ---- Configuration ----
 print('Intializing Gen A.I....')
-MODEL = "openai/gpt-oss-120b"    # Groq model to use (fast + capable)
+vpkg.gen_jarvis_eng('Intializing Gen A.I....')
+MODEL = "openai/gpt-oss-120b"    
 MAX_TOKENS = 1024                    # max tokens per response
 EFFORTS = 'low'
 CODE = 'JOgyd5jug'
@@ -24,9 +28,48 @@ SYSTEM_PROMPT = (
     "just respond normally as a conversational assistant."
 )
 
+# --------------------------------
+# Assitent Function
+# ----------------------------------
+print('Welcome Back Sir')
+vpkg.gen_jarvis_eng('Welcome Back Sir')
+
+def gen_routine_excution():
+    vpkg.gen_jarvis_eng('starting the routine apps confirmation needed')
+    conf = input().strip().lower()
+    affirmative_responses = {
+        'yes', 'y', 'yeah', 'yep', 'yup', 'sure', 'ok', 'okay',
+        'confirm', 'confirmed', 'affirmative', 'go', 'go ahead',
+        'do it', 'proceed', 'continue', 'correct', 'right', 'aye', 
+        'start'
+    }
+    if conf in affirmative_responses:
+        reminder_excute()
+    else:
+        exit()
+
+def _lock_console_window():
+    try:
+        SC_CLOSE = 0xF060
+        MF_BYCOMMAND = 0x00000000
+        hwnd = ctypes.windll.kernel32.GetConsoleWindow()
+        if hwnd:
+            hmenu = ctypes.windll.user32.GetSystemMenu(hwnd, False)
+            if hmenu:
+                ctypes.windll.user32.DeleteMenu(hmenu, SC_CLOSE, MF_BYCOMMAND)
+            SW_MINIMIZE = 6
+            ctypes.windll.user32.ShowWindow(hwnd, SW_MINIMIZE)
+    except Exception:
+        pass  # not on Windows, or no console attached — just skip
+
+# Ignore Ctrl+C so it can't be used to bypass the exit-code check.
+try:
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+except Exception:
+    pass
 
 def main():
-    with open("data/API_KEY") as f:
+    with open("data/API_KEY.txt", 'r') as f:
         api_key = f.read().strip()
         print('api_key done')
     if not api_key:
@@ -35,8 +78,6 @@ def main():
 
     client = Groq(api_key=api_key)
 
-    # Conversation history — sent with every request so the model
-    # has context of the whole chat. Starts with the system prompt.
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
     print('system prompt done')
 
@@ -108,4 +149,7 @@ def main():
 
 
 if __name__ == "__main__":
+    _lock_console_window()
+    gen_greet()
+    gen_routine_excution()
     main()

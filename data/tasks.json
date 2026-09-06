@@ -1,0 +1,42 @@
+[
+    {
+        "start": "12",
+        "end": "17",
+        "message": "Code Time",
+        "days": [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat"
+        ],
+        "paths": [
+            "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "D:/AppData/Microsoft VS Code/Code.exe",
+            "https://open.spotify.com",
+            "https://claude.ai/new"
+        ]
+    },
+    {
+        "start": "09",
+        "end": "12",
+        "message": "Chill",
+        "days": [],
+        "paths": [
+            "https://youtube.com",
+            "https://instagram.com",
+            "https://web.whatsapp.com"
+        ]
+    },
+    {
+        "start": "17",
+        "end": "23",
+        "message": "Test",
+        "days": [],
+        "paths": [
+            "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "https://github.com"
+        ]
+    }
+]
