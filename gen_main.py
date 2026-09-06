@@ -7,6 +7,8 @@ from gen_function_excute import excute_tool
 from gen_speak import gen_voice_package as vpkg
 from schedule_reminder import reminder_excute
 import getpass
+import ctypes
+import signal
 print('packages loaded')
 # ---- Configuration ----
 print('Intializing Gen A.I....')
@@ -45,6 +47,26 @@ def gen_routine_excution():
         reminder_excute()
     else:
         exit()
+
+def _lock_console_window():
+    try:
+        SC_CLOSE = 0xF060
+        MF_BYCOMMAND = 0x00000000
+        hwnd = ctypes.windll.kernel32.GetConsoleWindow()
+        if hwnd:
+            hmenu = ctypes.windll.user32.GetSystemMenu(hwnd, False)
+            if hmenu:
+                ctypes.windll.user32.DeleteMenu(hmenu, SC_CLOSE, MF_BYCOMMAND)
+            SW_MINIMIZE = 6
+            ctypes.windll.user32.ShowWindow(hwnd, SW_MINIMIZE)
+    except Exception:
+        pass  # not on Windows, or no console attached — just skip
+
+# Ignore Ctrl+C so it can't be used to bypass the exit-code check.
+try:
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+except Exception:
+    pass
 
 def main():
     with open("data/API_KEY.txt", 'r') as f:
@@ -127,6 +149,7 @@ def main():
 
 
 if __name__ == "__main__":
+    _lock_console_window()
     gen_greet()
     gen_routine_excution()
     main()
