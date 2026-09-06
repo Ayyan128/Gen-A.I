@@ -32,8 +32,8 @@ def reminder_excute(tasks_file='data/tasks.json'):
         day_ok = (not days) or (day in days)
 
         if day_ok and start_time <= current_time < end_time:
-            print('confirmation needed')
-            speak('confirmation needed')
+            print('routine apps are starting confirmation needed')
+            speak('routine apps are starting confirmation needed')
             conf = input()
             affirmative_responses = {
                 'yes', 'y', 'yeah', 'yep', 'yup', 'sure', 'ok', 'okay',
@@ -52,7 +52,6 @@ def reminder_excute(tasks_file='data/tasks.json'):
                         opening_apps(p)
                     print('everything sorted for you all aplications are opened')
                     speak('everything sorted for you all aplications are opened')
-                    exit()
             else:
                 continue
             # print(task.get('paths', []))
