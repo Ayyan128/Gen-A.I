@@ -1,6 +1,6 @@
 import ctypes
 import ctypes.wintypes as wintypes
-
+import subprocess
 def gen_single_touch_input():
     """
     Listens for a single earbud media-key tap.
@@ -91,3 +91,22 @@ def gen_single_touch_input():
         user32.UnhookWindowsHookEx(hook_id)
 
     return result[0]
+
+def is_device_connected(name_substring: str) -> bool:
+    cmd = (
+        f"Get-PnpDevice -Class Bluetooth | "
+        f"Where-Object {{$_.FriendlyName -like '*{name_substring}*' -and $_.Status -eq 'OK'}}"
+    )
+    result = subprocess.run(['powershell', '-Command', cmd], capture_output=True, text=True)
+    return bool(result.stdout.strip())
+
+def gen_input():
+    connection_status = is_device_connected()
+    if connection_status is True:
+        try: 
+            input = gen_single_touch_input()
+        except:
+            print('touch control failed fallback')
+            input = input()
+
+        return input

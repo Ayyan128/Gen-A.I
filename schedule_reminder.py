@@ -1,6 +1,7 @@
 import json
 import pyttsx3
-import datetime as dt 
+import datetime as dt
+from gen_input import gen_input 
 import os
 
 def speak(text):
@@ -34,7 +35,7 @@ def reminder_excute(tasks_file='data/tasks.json'):
         if day_ok and start_time <= current_time < end_time:
             print('routine apps are starting confirmation needed')
             speak('routine apps are starting confirmation needed')
-            conf = input()
+            conf = gen_input()
             affirmative_responses = {
                 'yes', 'y', 'yeah', 'yep', 'yup', 'sure', 'ok', 'okay',
                 'confirm', 'confirmed', 'affirmative', 'go', 'go ahead',
