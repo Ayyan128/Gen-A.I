@@ -1,7 +1,7 @@
 [
     {
-        "start": "12",
-        "end": "17",
+        "start": "14",
+        "end": "18",
         "message": "Code Time",
         "days": [
             "Mon",
@@ -12,31 +12,36 @@
             "Sat"
         ],
         "paths": [
-            "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
             "D:/AppData/Microsoft VS Code/Code.exe",
-            "https://open.spotify.com",
-            "https://claude.ai/new"
+            "https://claude.ai",
+            "https://open.spotify.com"
+        ]
+    },
+    {
+        "start": "18",
+        "end": "21",
+        "message": "Study",
+        "days": [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat"
+        ],
+        "paths": [
+            "https://digiskills.pk"
         ]
     },
     {
         "start": "09",
-        "end": "12",
-        "message": "Chill",
+        "end": "14",
+        "message": "Social",
         "days": [],
         "paths": [
+            "https://web.whatsapp.com",
             "https://youtube.com",
-            "https://instagram.com",
-            "https://web.whatsapp.com"
-        ]
-    },
-    {
-        "start": "17",
-        "end": "23",
-        "message": "Test",
-        "days": [],
-        "paths": [
-            "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-            "https://github.com"
+            "https://instagram.com"
         ]
     }
 ]
