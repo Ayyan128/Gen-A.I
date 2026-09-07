@@ -101,7 +101,7 @@ def is_device_connected(name_substring: str) -> bool:
     return bool(result.stdout.strip())
 
 def gen_input():
-    connection_status = is_device_connected()
+    connection_status = is_device_connected('pro2')
     if connection_status is True:
         try: 
             input = gen_single_touch_input()

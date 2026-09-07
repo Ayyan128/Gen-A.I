@@ -53,8 +53,9 @@ def reminder_excute(tasks_file='data/tasks.json'):
                         opening_apps(p)
                     print('everything sorted for you all aplications are opened')
                     speak('everything sorted for you all aplications are opened')
+                    return
             else:
-                continue
+                return
             # print(task.get('paths', []))
     print('nothing sheduled for now')
     speak('nothing sheduled for now')

@@ -92,7 +92,7 @@ class gen_web_open:
             return
     
         for query in queries:
-            vpkg.gen_jarvis_eng('opening' + query)
+            print(query)
             gen_web_open.open_first_result(query)
             vpkg.gen_jarvis_eng('  all sorted as you requested sir')
     
