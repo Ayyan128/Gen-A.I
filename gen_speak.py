@@ -1,4 +1,5 @@
 import pyttsx3
+import time
 
 class gen_voice_package:
 
@@ -8,6 +9,7 @@ class gen_voice_package:
         engine.setProperty("voice", voices[5].id)
         engine.setProperty("rate", 170)
         engine.setProperty("volume", 0.6)
+        time.sleep(0.5)
         engine.say(text)
         engine.runAndWait()
         del engine
