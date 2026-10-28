@@ -13,7 +13,6 @@ class gen_voice_package:
         engine.say(text)
         engine.runAndWait()
         del engine
-
     # BackUp Voice
     def gen_friday_eng(text):
         engine = pyttsx3.init()

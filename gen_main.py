@@ -9,6 +9,10 @@ from schedule_reminder import reminder_excute as gen_reminder_excute
 import getpass
 import ctypes
 import signal
+import pystray
+from PIL import Image, ImageDraw
+import threading
+from activity_monitor import main as activity_log
 
 print('packages loaded')
 # ---- Configuration ----
@@ -26,7 +30,7 @@ SYSTEM_PROMPT = (
     f"If, and only if, the user's message is clearly asking you to do one of "
     f"those tool actions, reply with EXACTLY the single token {CODE} and "
     "nothing else — no punctuation, no explanation. For every other message, "
-    "just respond normally as a conversational assistant."
+    "just respond normally as a conversational assistant.also don't include any symbol that can effect reading by pyttsx3"
 )
 
 # --------------------------------
@@ -134,9 +138,8 @@ def main():
         # Add assistant reply to history so context is preserved
         messages.append({"role": "assistant", "content": reply_text})
 
-
 if __name__ == "__main__":
     _lock_console_window()
-    gen_greet()
-    gen_reminder_excute()
+    threading.Thread(target=activity_log,daemon=True).start()
+    print('activity_log started')
     main()

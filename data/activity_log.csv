@@ -1,0 +1,23 @@
+time,event,software,duration_seconds
+2026-10-29 00:12:45,already_running,Code.exe,
+2026-10-29 00:12:45,already_running,chrome.exe,
+2026-10-29 00:12:53,opened,GitHubDesktop.exe,
+2026-10-29 00:12:55,opened,Update.exe,
+2026-10-29 00:12:55,opened,git.exe,
+2026-10-29 00:12:57,opened,git-lfs.exe,
+2026-10-29 00:12:59,closed,Update.exe,4
+2026-10-29 00:12:59,closed,git-lfs.exe,3
+2026-10-29 00:12:59,closed,git.exe,4
+2026-10-29 00:13:03,opened,git.exe,
+2026-10-29 00:13:05,closed,git.exe,2
+2026-10-29 00:13:17,opened,git-remote-https.exe,
+2026-10-29 00:13:17,opened,git.exe,
+2026-10-29 00:13:21,closed,git-remote-https.exe,2
+2026-10-29 00:13:23,closed,git.exe,2
+2026-10-29 00:13:44,closed,GitHubDesktop.exe,50
+2026-10-29 00:21:09,already_running,Code.exe,
+2026-10-29 00:21:09,already_running,chrome.exe,
+2026-10-29 00:31:56,already_running,Code.exe,
+2026-10-29 00:31:56,already_running,chrome.exe,
+2026-10-29 00:41:13,already_running,Code.exe,
+2026-10-29 00:41:13,already_running,chrome.exe,
