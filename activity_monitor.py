@@ -29,7 +29,7 @@ IGNORE = {
     "taskbarx.exe", "translucenttb.exe", "video.ui.exe",
     "xboxpcappft.exe", "xboxservice.exe", "crashpad_handler.exe",
     "gamingservices.exe", "gamingservicesnet.exe", "mdnsresponder.exe",
-    "pet.exe",
+    "pet.exe","git.exe",
     # added from your activity log
     "gamebar.exe", "gamebarftserver.exe", "xboxgamebarwidgets.exe",
     "spotifyxboxgamebarwebview.exe", "xboxpctray.exe", "gamelaunchhelper.exe",
