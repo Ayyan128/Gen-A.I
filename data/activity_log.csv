@@ -57,3 +57,6 @@ time,event,software,duration_seconds
 2026-10-30 04:12:31,closed,Minecraft.Windows.exe,22
 2026-10-30 04:13:01,opened,Minecraft.Windows.exe,
 2026-10-30 04:13:18,closed,Minecraft.Windows.exe,17
+2026-10-30 04:29:12,already_running,Code.exe,
+2026-10-30 04:29:12,already_running,WhatsApp.Root.exe,
+2026-10-30 04:29:12,already_running,chrome.exe,
