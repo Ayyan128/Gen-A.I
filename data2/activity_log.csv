@@ -1,0 +1,8 @@
+time,event,software,duration_seconds
+2026-10-30 04:54:39,already_running,Code.exe,
+2026-10-30 04:54:39,already_running,bash.exe,
+2026-10-30 04:54:39,already_running,chrome.exe,
+2026-10-30 04:54:39,already_running,git-bash.exe,
+2026-10-30 04:54:39,already_running,mintty.exe,
+2026-10-30 04:55:10,opened,MySQLWorkbench.exe,
+2026-10-30 04:55:18,closed,MySQLWorkbench.exe,9

@@ -37,13 +37,68 @@ IGNORE = {
     "update.exe", "officec2rclient.exe", "hxtsr.exe", "mpcmdrun.exe",
     "dismhost.exe", "actionsserver.exe", "onedrivelauncher.exe",
     "onedrivestandaloneupdater.exe", "onedrive.sync.service.exe",
-    "filecoauth.exe", "plugscheduler.exe", "ruximics.exe", "service.exe",
-    "crosvm.exe", "msedgewebview2.exe", "phoneexperiencehost.exe",
+    "filecoauth.exe", "plugscheduler.exe", "ruximics.exe", "service.exe", "msedgewebview2.exe", "phoneexperiencehost.exe",
     "gpu_check.exe", "storedesktopextension.exe",
     "windowspackagemanagerserver.exe", "elevation_service.exe",
     "identity_helper.exe", "pwahelper.exe", "git-lfs.exe",
     "git-remote-https.exe", "code-tunnel.exe","WhatsApp.Root.exe"
 }
+
+# ---------------------------------------------------------------------------
+# TRACKING RULES
+#   TRACK   -> always logged, even if the app is also in IGNORE or lives in C:\Windows
+#   IGNORE  -> never logged
+#   neither -> logged too (every app not mentioned is tracked by default)
+# Names are not case sensitive.
+# ---------------------------------------------------------------------------
+TRACK = {
+    "code.exe", "chrome.exe", "msedge.exe", "githubdesktop.exe",
+    "minecraft.windows.exe", "whatsapp.exe",
+}
+
+# Apps found in C:\Windows that are in neither list are skipped when True
+# (they are almost all background services). Set False to log those too.
+SKIP_WINDOWS_FOLDER = True
+
+TRACK = {n.lower() for n in TRACK}
+IGNORE = {n.lower() for n in IGNORE}
+
+
+def set_rules(track=None, ignore=None):
+    """Add apps to the rules while the program runs.
+    set_rules(track=["spotify.exe"], ignore=["notepad.exe"])
+    An app moves out of the other list when you add it to one."""
+    for n in (track or []):
+        n = n.lower()
+        TRACK.add(n)
+        IGNORE.discard(n)
+    for n in (ignore or []):
+        n = n.lower()
+        IGNORE.add(n)
+        TRACK.discard(n)
+
+
+def clear_rules(track=None, ignore=None):
+    """Remove apps from a list, so they fall back to the default (tracked).
+    clear_rules(ignore=["notepad.exe"])"""
+    for n in (track or []):
+        TRACK.discard(n.lower())
+    for n in (ignore or []):
+        IGNORE.discard(n.lower())
+
+
+def should_track(name, exe="", include_system=False):
+    if include_system:
+        return True
+    key = name.lower()
+    if key in TRACK:
+        return True
+    if key in IGNORE:
+        return False
+    if (SKIP_WINDOWS_FOLDER and os.name == "nt"
+            and exe.lower().startswith("c:\\windows")):
+        return False
+    return True      # not mentioned anywhere -> tracked
 
 
 def now_str():
@@ -70,11 +125,8 @@ def get_running_apps(include_system=False):
             exe = p.info["exe"] or ""
             if not name or not exe:
                 continue
-            if not include_system:
-                if name.lower() in IGNORE:
-                    continue
-                if os.name == "nt" and exe.lower().startswith("c:\\windows"):
-                    continue
+            if not should_track(name, exe, include_system):
+                continue
             started = p.info["create_time"] or time.time()
             if name not in apps or started < apps[name]:
                 apps[name] = started
