@@ -1,0 +1,21 @@
+# Gen A.I project requirements
+# Python 3.14+ needed (getpass echo_char argument). Windows only (ctypes.windll).
+# Install with:  pip install -r requirements.txt
+
+groq
+pyttsx3
+pystray
+pillow
+psutil
+scikit-learn
+pandas
+joblib
+keyboard
+
+# Optional (only if you use them):
+# pywin32
+# beautifulsoup4
+# requests
+
+# Not included: packages imported by gen_greet.py, gen_function_excute.py and
+# schedule_reminder.py, which were not shared. Add them here if needed.

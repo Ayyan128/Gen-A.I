@@ -1,3 +1,59 @@
+# ---- tray icon + hidden console FIRST, before the slow imports ----
+import ctypes
+import os
+import threading
+import pystray
+from PIL import Image, ImageDraw
+
+START_HIDDEN = True      # set to False while debugging so you can see errors
+SW_HIDE, SW_RESTORE = 0, 9
+
+def _hwnd():
+    try:
+        return ctypes.windll.kernel32.GetConsoleWindow()
+    except Exception:
+        return 0
+
+def hide_console():
+    hwnd = _hwnd()
+    if hwnd:
+        ctypes.windll.user32.ShowWindow(hwnd, SW_HIDE)
+
+def toggle_console(icon=None, item=None):
+    """Click on the tray icon: show the console if hidden, hide it if shown."""
+    hwnd = _hwnd()
+    if not hwnd:
+        return
+    if ctypes.windll.user32.IsWindowVisible(hwnd):
+        ctypes.windll.user32.ShowWindow(hwnd, SW_HIDE)
+    else:
+        ctypes.windll.user32.ShowWindow(hwnd, SW_RESTORE)
+        ctypes.windll.user32.SetForegroundWindow(hwnd)
+
+def quit_app(icon, item):
+    icon.stop()
+    os._exit(0)
+
+def _make_icon_image():
+    img = Image.new('RGB', (64, 64), 'black')
+    ImageDraw.Draw(img).ellipse((8, 8, 56, 56), fill='#00b4ff')
+    return img
+
+if START_HIDDEN:
+    hide_console()
+
+tray = pystray.Icon(
+    'gen_ai',
+    _make_icon_image(),
+    'Gen A.I.',
+    menu=pystray.Menu(
+        pystray.MenuItem('Show / Hide', toggle_console, default=True),  # left-click
+        pystray.MenuItem('Exit', quit_app),
+    ),
+)
+tray.run_detached()      # tray runs in its own thread, loading continues below
+# ---------------------------------------------------------------------
+
 print('loading packages...')
 from gen_greet import gen_greet
 import sys
@@ -48,8 +104,6 @@ def _lock_console_window():
             hmenu = ctypes.windll.user32.GetSystemMenu(hwnd, False)
             if hmenu:
                 ctypes.windll.user32.DeleteMenu(hmenu, SC_CLOSE, MF_BYCOMMAND)
-            SW_MINIMIZE = 6
-            ctypes.windll.user32.ShowWindow(hwnd, SW_MINIMIZE)
     except Exception:
         pass  # not on Windows, or no console attached — just skip
 
@@ -142,4 +196,8 @@ if __name__ == "__main__":
     _lock_console_window()
     threading.Thread(target=activity_log,daemon=True).start()
     print('activity_log started')
-    main()
+
+    try:
+        main()
+    finally:
+        tray.stop()      # assistant ended -> close the tray icon too

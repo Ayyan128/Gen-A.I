@@ -30,6 +30,19 @@ IGNORE = {
     "xboxpcappft.exe", "xboxservice.exe", "crashpad_handler.exe",
     "gamingservices.exe", "gamingservicesnet.exe", "mdnsresponder.exe",
     "pet.exe",
+    # added from your activity log
+    "gamebar.exe", "gamebarftserver.exe", "xboxgamebarwidgets.exe",
+    "spotifyxboxgamebarwebview.exe", "xboxpctray.exe", "gamelaunchhelper.exe",
+    "gamingservicesui.exe", "microsoftedgeupdate.exe", "updater.exe",
+    "update.exe", "officec2rclient.exe", "hxtsr.exe", "mpcmdrun.exe",
+    "dismhost.exe", "actionsserver.exe", "onedrivelauncher.exe",
+    "onedrivestandaloneupdater.exe", "onedrive.sync.service.exe",
+    "filecoauth.exe", "plugscheduler.exe", "ruximics.exe", "service.exe",
+    "crosvm.exe", "msedgewebview2.exe", "phoneexperiencehost.exe",
+    "gpu_check.exe", "storedesktopextension.exe",
+    "windowspackagemanagerserver.exe", "elevation_service.exe",
+    "identity_helper.exe", "pwahelper.exe", "git-lfs.exe",
+    "git-remote-https.exe", "code-tunnel.exe","WhatsApp.Root.exe"
 }
 
 
