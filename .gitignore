@@ -3,4 +3,4 @@ data/API_KEY.txt
 .venv
 data/tasks.json
 __pycache__
-data\activity_log.csv
+data/activity_log.csv
