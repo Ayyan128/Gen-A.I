@@ -25,3 +25,9 @@ time,event,software,duration_seconds
 2026-10-30 02:25:50,closed,git.exe,2
 2026-10-30 02:25:56,opened,git.exe,
 2026-10-30 02:25:58,closed,git.exe,2
+2026-10-30 02:26:18,opened,git.exe,
+2026-10-30 02:26:29,closed,git.exe,2
+2026-10-30 02:27:05,opened,msedge.exe,
+2026-10-30 02:27:55,opened,git.exe,
+2026-10-30 02:27:57,closed,git.exe,2
+2026-10-30 02:28:03,opened,git.exe,
