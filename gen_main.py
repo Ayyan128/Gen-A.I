@@ -1,3 +1,16 @@
+import ctypes
+def _lock_console_window():
+    try:
+        SC_CLOSE = 0xF060
+        MF_BYCOMMAND = 0x00000000
+        hwnd = ctypes.windll.kernel32.GetConsoleWindow()
+        if hwnd:
+            hmenu = ctypes.windll.user32.GetSystemMenu(hwnd, False)
+            if hmenu:
+                ctypes.windll.user32.DeleteMenu(hmenu, SC_CLOSE, MF_BYCOMMAND)
+    except Exception:
+        pass  # not on Windows, or no console attached — just skip
+_lock_console_window()
 # ---- tray icon + hidden console FIRST, before the slow imports ----
 import ctypes
 import os
@@ -35,10 +48,14 @@ def quit_app(icon, item):
     os._exit(0)
 
 def _make_icon_image():
-    img = Image.new('RGB', (64, 64), 'black')
-    ImageDraw.Draw(img).ellipse((8, 8, 56, 56), fill='#00b4ff')
-    return img
-
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "icon.jpg")
+    try:
+        return Image.open(path).convert("RGBA")
+    except Exception as e:
+        print(f"[tray icon] couldn't load {path}: {e}")      # shows why the image failed
+        img = Image.new('RGB', (64, 64), 'black')            # fallback: the old blue circle
+        ImageDraw.Draw(img).ellipse((8, 8, 56, 56), fill='#00b4ff')
+        return img
 if START_HIDDEN:
     hide_console()
 
@@ -63,7 +80,6 @@ from gen_function_excute import excute_tool
 from gen_speak import gen_voice_package as vpkg
 from schedule_reminder import reminder_excute as gen_reminder_excute
 import getpass
-import ctypes
 import signal
 import pystray
 from PIL import Image, ImageDraw
@@ -95,17 +111,6 @@ SYSTEM_PROMPT = (
 print('Welcome Back Sir')
 vpkg.gen_jarvis_eng('Welcome Back Sir')
 
-def _lock_console_window():
-    try:
-        SC_CLOSE = 0xF060
-        MF_BYCOMMAND = 0x00000000
-        hwnd = ctypes.windll.kernel32.GetConsoleWindow()
-        if hwnd:
-            hmenu = ctypes.windll.user32.GetSystemMenu(hwnd, False)
-            if hmenu:
-                ctypes.windll.user32.DeleteMenu(hmenu, SC_CLOSE, MF_BYCOMMAND)
-    except Exception:
-        pass  # not on Windows, or no console attached — just skip
 
 # Ignore Ctrl+C so it can't be used to bypass the exit-code check.
 try:
@@ -193,7 +198,6 @@ def main():
         messages.append({"role": "assistant", "content": reply_text})
 
 if __name__ == "__main__":
-    _lock_console_window()
     threading.Thread(target=activity_log,daemon=True).start()
     print('activity_log started')
 
