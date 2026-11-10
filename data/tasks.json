@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "start": "12",
+        "end": "23",
+        "message": "test",
+        "days": [],
+        "paths": [
+            "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+        ]
+    }
+]

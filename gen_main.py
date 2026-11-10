@@ -110,6 +110,7 @@ SYSTEM_PROMPT = (
 # ----------------------------------
 print('Welcome Back Sir')
 vpkg.gen_jarvis_eng('Welcome Back Sir')
+gen_reminder_excute()  # check for scheduled tasks and run them if needed
 
 
 # Ignore Ctrl+C so it can't be used to bypass the exit-code check.
